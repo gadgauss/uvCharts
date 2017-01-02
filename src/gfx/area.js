@@ -56,7 +56,7 @@ uv.AreaGraph.prototype.drawHorizontalArea = function (areagroup, idx) {
   areagroup.line = areagroup.path.append('svg:path')
         .classed(uv.constants.classes.linepath + idx, true)
         .attr('d', areagroup.linefunc)
-        .style('stroke', 'white')
+        .style('stroke', color)
         .style('fill', 'none');
 
   areagroup.path.selectAll('.' + uv.constants.classes.dot)
@@ -66,7 +66,7 @@ uv.AreaGraph.prototype.drawHorizontalArea = function (areagroup, idx) {
         .attr('cx', areagroup.linefunc.x())
         .attr('cy', areagroup.linefunc.y())
         .attr('r', 3.5)
-        .style('fill', 'white');
+        .style('fill', color);
 };
 
 uv.AreaGraph.prototype.drawVerticalArea = function (areagroup, idx) {
@@ -96,7 +96,7 @@ uv.AreaGraph.prototype.drawVerticalArea = function (areagroup, idx) {
   areagroup.line = areagroup.path.append('svg:path')
         .classed(uv.constants.classes.linepath + idx, true)
         .attr('d', areagroup.linefunc)
-        .style('stroke', 'white')
+        .style('stroke', color)
         .style('fill', 'none');
 
   areagroup.path.selectAll('.' + uv.constants.classes.dot)
@@ -106,5 +106,5 @@ uv.AreaGraph.prototype.drawVerticalArea = function (areagroup, idx) {
         .attr('cx', areagroup.linefunc.x())
         .attr('cy', areagroup.linefunc.y())
         .attr('r', 3.5)
-        .style('fill', 'white');
+        .style('fill', color);
 };
