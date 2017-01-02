@@ -57,7 +57,7 @@ uv.StackedAreaGraph.prototype.drawHorizontalArea = function () {
     .attr('class', function (d, i) {
       return uv.util.getClassName(this, uv.constants.classes.line + categories[i]);
     })
-    .style('stroke', 'white')
+    .style('stroke', function (d, i) { return uv.util.getColorBand(config, i); })
     .style('fill', 'none')
     .style('stroke-width', 2)
     .attr('d', d3.svg.line()
@@ -102,7 +102,7 @@ uv.StackedAreaGraph.prototype.drawVerticalArea = function () {
       .attr('class', function (d, i) {
         return uv.util.getClassName(this, uv.constants.classes.line + categories[i]);
       })
-      .style('stroke', 'white')
+      .style('stroke', function (d, i) { return uv.util.getColorBand(config, i); })
       .style('fill', 'none')
       .style('stroke-width', 2)
       .attr('d', d3.svg.line()
