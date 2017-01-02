@@ -498,7 +498,7 @@ uv.Graph.prototype.setLegend = function () {
       .attr('transform', function (d, i) {
         if(self.config.legend.position === 'right'){
           return 'translate(10,' + 10* (2* i - 1) + ')';
-        }else if(self.config.legend.position === 'bottom'){
+        }else if(self.config.legend.position === 'bottom' || self.config.legend.position === 'top'){
           var hPos = 100*i - self.config.dimension.width*self.config.legend.legendstart;
           var vPos = 20*self.config.legend.legendstart;
           if(hPos >= self.config.dimension.width){
