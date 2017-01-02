@@ -41,6 +41,8 @@ uv.StackedAreaGraph.prototype.drawHorizontalArea = function () {
       .attr('class', function (d, i) {
         return uv.util.getClassName(this, uv.constants.classes.area + categories[i]);
       })
+      .style('opacity', self.config.area.opacity)
+      .style('-moz-opacity', self.config.area.opacity)
       .style('fill', function (d, i) { return uv.util.getColorBand(config, i); })
       .attr('d', d3.svg.area()
         .y(function (d) { return axes.ver.scale(d.x) + axes.ver.scale.rangeBand() / 2; })
@@ -83,6 +85,8 @@ uv.StackedAreaGraph.prototype.drawVerticalArea = function () {
       .attr('class', function (d, i) {
         return uv.util.getClassName(this, uv.constants.classes.area + categories[i]);
       })
+      .style('opacity', self.config.area.opacity)
+      .style('-moz-opacity', self.config.area.opacity)
       .style('fill', function (d, i) { return uv.util.getColorBand(config, i); })
       .attr('d', d3.svg.area()
         .x(function (d) { return axes.hor.scale(d.x) + axes.hor.scale.rangeBand() / 2; })
