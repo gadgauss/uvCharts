@@ -428,6 +428,7 @@ uv.Graph.prototype.drawHorizontalAxis = function () {
                 .attr('text-anchor','middle')
                 .style('font-size', self.config.axis.fontsize)
                 .style('font-family', self.config.axis.fontfamily)
+                .style('stroke',  self.config.label.strokecolor)
                 .text(self.config.meta.hlabel);
 
   self.axes.hor.label.append('text')
@@ -437,6 +438,7 @@ uv.Graph.prototype.drawHorizontalAxis = function () {
                 .attr('text-anchor','middle')
                 .style('font-size', self.config.axis.fontsize - 2)
                 .style('font-family', self.config.axis.fontfamily)
+                .style('stroke',  self.config.label.strokecolor)
                 .text(self.config.meta.hsublabel);
 
   return this;
@@ -495,6 +497,7 @@ uv.Graph.prototype.drawVerticalAxis = function () {
                 .classed('cal', true)
                 .style('font-family', self.config.axis.fontfamily)
                 .style('font-size', self.config.axis.fontsize)
+                .style('stroke',  self.config.label.strokecolor)
                 .text(self.config.meta.vlabel);
 
   self.axes.ver.label.append('text').classed(uv.constants.classes.axessublabel, true)
@@ -503,6 +506,7 @@ uv.Graph.prototype.drawVerticalAxis = function () {
                 .classed('casl', true)
                 .style('font-family', self.config.axis.fontfamily)
                 .style('font-size', self.config.axis.fontsize - 2)
+                .style('stroke',  self.config.label.strokecolor)
                 .text(self.config.meta.vsublabel);
 
   return this;
