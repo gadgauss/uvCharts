@@ -43,7 +43,7 @@ gulp.task('bower', function () {
   return bower();
 });
 
-gulp.task('build:gfx', ['clean:gfx'], function () {
+gulp.task('build:gfx', function () {
   return gulp.src(paths['module_begin'].concat(paths.util).concat(paths.gfx).concat(paths['module_end']))
     .pipe(sourcemaps.init())
     .pipe(concat('uvcharts.js'))
@@ -60,7 +60,7 @@ gulp.task('build:gfx', ['clean:gfx'], function () {
     .pipe(gulp.dest('build/'));
 });
 
-gulp.task('build:full:gfx', ['bower', 'clean:gfx'], function () {
+gulp.task('build:full:gfx', ['bower'], function () {
   return gulp.src(paths['d3_min_src'].concat(paths['module_begin']).concat(paths.util).concat(paths.gfx).concat(paths['module_end']))
     .pipe(sourcemaps.init())
     .pipe(concat('uvcharts.full.js'))
