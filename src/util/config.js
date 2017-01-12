@@ -64,6 +64,7 @@ uv.config = {
     fontsize: '11',
     fontweight: 'normal',
     strokecolor: '#000000',
+    fillcolor: '#000000',
     showlabel: true,
     precision: 2,
     prefix: '',
