@@ -54,6 +54,8 @@ uv.config = {
     showtext: true,
     showhortext: true,
     showvertext: true,
+    rotatehortext:0,
+    rotatevertext:0,
     opacity: 0.1
   },
 

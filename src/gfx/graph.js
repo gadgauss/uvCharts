@@ -392,6 +392,25 @@ uv.Graph.prototype.drawHorizontalAxis = function () {
   }
   self.axes.hor.axis.selectAll('path').style('fill','none');
 
+  if(self.config.axis.rotatehortext > 0) {
+      self.axes.hor.axis.selectAll("text")
+                  .style("text-anchor", "start")
+                  .attr("dx", "-.8em")
+                  .attr("dy", ".9em")
+                  .attr("transform", function(d) {
+                      return "rotate("+self.config.axis.rotatehortext+")" 
+                      });
+  } else if(self.config.axis.rotatehortext < 0) {
+      self.axes.hor.axis.selectAll("text")
+                  .style("text-anchor", "end")
+                  .attr("dx", "-.8em")
+                  .attr("dy", ".9em")
+                  .attr("transform", function(d) {
+                      return "rotate("+self.config.axis.rotatehortext+")" 
+                      });
+  }
+  
+
   self.axes.hor.line = self.panel.append('line')
                 .classed(uv.constants.classes.horaxis, true)
                 .attr('y1', self.config.graph.orientation === 'Horizontal' ? self.height() : self.axes.ver.scale(0))
