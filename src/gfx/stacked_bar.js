@@ -52,7 +52,7 @@ uv.StackedBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
       .each("end", function (d,i){
         if(typeof self.config.graph.hoverCallback === "function") {
           d3.select(this).on('mouseover', function(_d){
-              self.config.graph.hoverCallback.apply(null, [true,_d]);
+              self.config.graph.hoverCallback.apply(null, [true,_d,this]);
           });
           d3.select(this).on('mouseout', function(_d){
               self.config.graph.hoverCallback.apply(null, [false,_d]);
@@ -117,7 +117,7 @@ uv.StackedBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
       .each("end", function (d,i){
         if(typeof self.config.graph.hoverCallback === "function") {
           d3.select(this).on('mouseover', function(_d){
-              self.config.graph.hoverCallback.apply(null, [true,_d]);
+              self.config.graph.hoverCallback.apply(null, [true,_d,this]);
           });
           d3.select(this).on('mouseout', function(_d){
               self.config.graph.hoverCallback.apply(null, [false,_d]);
