@@ -54,8 +54,17 @@ uv.BarGraph.prototype.drawHorizontalBars = function (idx) {
       .delay(function (d, i) { return i * self.config.effects.duration; })
       .attr('width', function (d) { return self.axes.hor.scale(Math.abs(d.value)) - self.axes.hor.scale(0); })
       .call(uv.util.endAll, function (d,i){
-        d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx));
-        d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', uv.effects.bar.mouseout(self, idx));
+        if(typeof self.config.graph.hoverCallback === "function") {
+          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', function(_d){
+              self.config.graph.hoverCallback.apply(null, [true,_d,this]);
+          });
+          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', function(_d){
+              self.config.graph.hoverCallback.apply(null, [false,_d]);
+          });
+        } else {
+          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx));
+          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', uv.effects.bar.mouseout(self, idx));
+        }
         if (typeof self.config.graph.clickCallback === "function") {
           d3.select(this.parentNode.parentNode).selectAll('rect').on('click', function(_d){
               self.config.graph.clickCallback.apply(null, [_d]);
@@ -113,8 +122,17 @@ uv.BarGraph.prototype.drawVerticalBars = function (idx) {
         .delay(idx * self.config.effects.duration)
         .attr('height', function (d) { return Math.abs(self.axes.ver.scale(0) - self.axes.ver.scale(d.value)); })
         .call(uv.util.endAll, function (d,i){
-          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx));
-          d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', uv.effects.bar.mouseout(self, idx));
+          if(typeof self.config.graph.hoverCallback === "function") {
+            d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', function(_d){
+                self.config.graph.hoverCallback.apply(null, [true,_d,this]);
+            });
+            d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', function(_d){
+                self.config.graph.hoverCallback.apply(null, [false,_d]);
+            });
+          } else {
+            d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx));
+            d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseout', uv.effects.bar.mouseout(self, idx));
+          }
           if(typeof self.config.graph.clickCallback === "function") {
             d3.select(this.parentNode.parentNode).selectAll('rect').on('click', function(_d){
               self.config.graph.clickCallback.apply(null, [_d]);
