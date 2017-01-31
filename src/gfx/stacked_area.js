@@ -51,7 +51,19 @@ uv.StackedAreaGraph.prototype.drawHorizontalArea = function () {
         .interpolate(self.config.area.interpolation)
       )
     .on('mouseover', function (d,i){ self.effects[categories[i]].mouseover(); })
-    .on('mouseout',  function (d,i) { self.effects[categories[i]].mouseout(); });
+    .on('mouseout',  function (d,i) { 
+      self.effects[categories[i]].mouseout(); 
+      if(typeof self.config.graph.hoverCallback === "function") {
+        self.config.graph.hoverCallback.apply(null, [false,null,d3.mouse(this),this]);
+      }
+    })
+    .on("mousemove", function(d, i) {
+      if(typeof self.config.graph.hoverCallback === "function") {
+        var width = self.areagroup[0][i].getBBox().width;
+        var segmentWidth = width/d.length;
+        self.config.graph.hoverCallback.apply(null, [true,d[Math.floor(d3.mouse(this)[0]/segmentWidth)],d3.mouse(this),this]);
+      }
+    });
 
   self.areagroup.append('path')
     .attr('class', function (d, i) {
@@ -95,7 +107,19 @@ uv.StackedAreaGraph.prototype.drawVerticalArea = function () {
         .interpolate(self.config.area.interpolation)
       )
     .on('mouseover', function (d,i){ self.effects[categories[i]].mouseover(); })
-    .on('mouseout',  function (d,i) { self.effects[categories[i]].mouseout(); });
+    .on('mouseout',  function (d,i) { 
+      self.effects[categories[i]].mouseout(); 
+      if(typeof self.config.graph.hoverCallback === "function") {
+        self.config.graph.hoverCallback.apply(null, [false,null,d3.mouse(this),this]);
+      }
+    })
+    .on("mousemove", function(d, i) {
+      if(typeof self.config.graph.hoverCallback === "function") {
+        var width = self.areagroup[0][i].getBBox().width;
+        var segmentWidth = width/d.length;
+        self.config.graph.hoverCallback.apply(null, [true,d[Math.floor(d3.mouse(this)[0]/segmentWidth)],d3.mouse(this),this]);
+      }
+    });
 
 
   self.areagroup.append('path')
