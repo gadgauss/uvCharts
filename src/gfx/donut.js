@@ -25,8 +25,20 @@ uv.DonutGraph = function (graphdef, config) {
       .style('fill', function (d, i) { return uv.util.getColorBand(self.config, i); })
       .style('stroke', self.config.donut.strokecolor)
       .style('stroke-width', self.config.donut.strokewidth)
-    .on('mouseover', uv.effects.donut.mouseover(self.center, arcfunc, self.config))
-    .on('mouseout', uv.effects.donut.mouseout(self.center, self.config))
+    .on('mouseover', function(d,i){
+      var f = uv.effects.donut.mouseover(self.center, arcfunc, self.config);
+      f.apply(this, arguments);
+      if(typeof self.config.graph.hoverCallback === "function") {
+        self.config.graph.hoverCallback.apply(null, [true,null,d3.mouse(this),this]);
+      }
+    })
+    .on('mouseout', function(d,i){
+      var f = uv.effects.donut.mouseout(self.center, self.config);
+      f.apply(this, arguments);
+      if(typeof self.config.graph.hoverCallback === "function") {
+        self.config.graph.hoverCallback.apply(null, [true,null,d3.mouse(this),this]);
+      }
+    })
 
   if (typeof self.config.graph.clickCallback === "function") {
     self.arcs.on('click', function (d) {
