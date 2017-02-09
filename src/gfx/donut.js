@@ -29,14 +29,14 @@ uv.DonutGraph = function (graphdef, config) {
       var f = uv.effects.donut.mouseover(self.center, arcfunc, self.config);
       f.apply(this, arguments);
       if(typeof self.config.graph.hoverCallback === "function") {
-        self.config.graph.hoverCallback.apply(null, [true,null,d3.mouse(this),this]);
+        self.config.graph.hoverCallback.apply(null, [true,[d,i],d3.mouse(this),this]);
       }
     })
     .on('mouseout', function(d,i){
       var f = uv.effects.donut.mouseout(self.center, self.config);
       f.apply(this, arguments);
       if(typeof self.config.graph.hoverCallback === "function") {
-        self.config.graph.hoverCallback.apply(null, [true,null,d3.mouse(this),this]);
+        self.config.graph.hoverCallback.apply(null, [true,[d,i],d3.mouse(this),this]);
       }
     })
 
