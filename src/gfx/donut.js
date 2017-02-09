@@ -36,7 +36,7 @@ uv.DonutGraph = function (graphdef, config) {
       var f = uv.effects.donut.mouseout(self.center, self.config);
       f.apply(this, arguments);
       if(typeof self.config.graph.hoverCallback === "function") {
-        self.config.graph.hoverCallback.apply(null, [true,[d,i],d3.mouse(this),this]);
+        self.config.graph.hoverCallback.apply(null, [false,[d,i],d3.mouse(this),this]);
       }
     })
 
