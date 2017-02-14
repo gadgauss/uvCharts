@@ -136,13 +136,26 @@ uv.Graph.prototype.setFrame = function () {
       .style('display','inline-block')
       .style('width', '100%')
       .style('height', '100%')
-      .append('svg');
+      .style('position','relative')
+      .append('svg')
+      .style('position','absolute')
+      .style('width', '100%')
+      .style('top', '0px')
+      .style('left', '0px');
   }
 
   self.frame.attr('id', uv.constants.classes.uv + '-' + self.id)
     .classed(uv.constants.classes.frame, true);
 
   if (self.config.graph.responsive === true) {
+    // canvas hack for IE11 responsivity to work
+    d3.select(d3.select('#'+ uv.constants.classes.uv + '-' + self.id).node().parentNode).append('canvas')
+        .style('display','block')
+        .style('width','100%')
+        .style('visibility','hidden')
+        .attr('width', self.width() + self.left() + self.right())
+        .attr('height', self.height() + self.top() + self.bottom());
+
     self.frame.attr('width', '100%')
       .attr('height', '100%')
       .attr('preserveAspectRatio', self.config.graph.align + ' ' + self.config.graph.meetOrSlice)
